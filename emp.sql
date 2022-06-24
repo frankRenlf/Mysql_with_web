@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 80026
  Source Host           : localhost:3306
- Source Schema         : demo_o5_mybatis
+ Source Schema         : mysqllearning
 
  Target Server Type    : MySQL
  Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 22/06/2022 15:41:59
+ Date: 24/06/2022 10:56:15
 */
 
 SET NAMES utf8mb4;
@@ -23,18 +23,18 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `emp`;
 CREATE TABLE `emp`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `joindate` date NOT NULL,
-  `salary` double(7, 2) NOT NULL,
-  `bonus` double(7, 2) NULL DEFAULT 0.00,
+  `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `age` int NULL DEFAULT NULL,
+  `dep_id` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  UNIQUE INDEX `dep_id`(`dep_id`) USING BTREE,
+  CONSTRAINT `fk_emp_dept` FOREIGN KEY (`dep_id`) REFERENCES `dept` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of emp
 -- ----------------------------
-INSERT INTO `emp` VALUES (1, 'frank2', '2000-09-30', 10000.00, 8000.00);
-INSERT INTO `emp` VALUES (2, 'frank3', '2000-09-30', 10000.00, 8000.00);
+INSERT INTO `emp` VALUES (1, 'frank', 21, 1);
+INSERT INTO `emp` VALUES (2, 'lily', 22, 2);
 
 SET FOREIGN_KEY_CHECKS = 1;
